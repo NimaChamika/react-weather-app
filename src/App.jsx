@@ -1,6 +1,7 @@
-import { Button, ThemeProvider, Typography, createTheme } from "@mui/material";
+import { Button, ThemeProvider, createTheme } from "@mui/material";
 import { useMemo, useState } from "react";
-import { ThemeMode } from "./utils/data";
+import { ThemeMode } from "./Utils/Data";
+import Home from "./Components/Home";
 
 export const ThemeColors = {
   backgroundColor: {
@@ -23,8 +24,6 @@ export const ThemeColors = {
 
 function App() {
   const [themeMode, setThemeMode] = useState(ThemeMode.LIGHT);
-
-  console.log(themeMode);
 
   const changeTheme = () => {
     const newTheme =
@@ -79,10 +78,8 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Typography color="text.primary">Weather Data</Typography>
-      <Button color="primary" onClick={changeTheme}>
-        Theme
-      </Button>
+      <Button onClick={changeTheme}>Theme</Button>
+      <Home />
     </ThemeProvider>
   );
 }

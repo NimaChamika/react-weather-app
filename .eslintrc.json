@@ -28,12 +28,17 @@
     "react/react-in-jsx-scope": ["off"],
     "react/jsx-props-no-spreading": ["off"],
     "no-shadow": "off",
+    "react/prop-types": ["off"],
+    "react/no-array-index-key": ["off"],
     "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"
       }
     ],
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "no-param-reassign": ["off"],
+    "react/jsx-no-bind": ["off"],
+    "no-use-before-define": ["off"]
   }
 }
