@@ -1,4 +1,4 @@
-import { Button, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { useMemo, useState } from "react";
 import { ThemeMode } from "./Utils/Data";
 import Home from "./Components/Home";
@@ -25,6 +25,7 @@ export const ThemeColors = {
 function App() {
   const [themeMode, setThemeMode] = useState(ThemeMode.LIGHT);
 
+  // eslint-disable-next-line no-unused-vars
   const changeTheme = () => {
     const newTheme =
       themeMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT;
@@ -78,8 +79,9 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Button onClick={changeTheme}>Theme</Button>
-      <Home />
+      <CssBaseline>
+        <Home />
+      </CssBaseline>
     </ThemeProvider>
   );
 }

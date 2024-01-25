@@ -1,7 +1,16 @@
-import { Button } from "@mui/material";
+import { useEffect } from "react";
+import SearchBar from "../SearchBar";
 import { useGetCityWeatherMutation } from "../../Services/Weather_Apis";
 
 function Home() {
+  // #region HOOKS
+
+  useEffect(() => {
+    getCityWeatherAPI({ city: "colombo" });
+  }, []);
+
+  // #endregion
+
   const [
     getCityWeatherAPI,
     {
@@ -16,6 +25,7 @@ function Home() {
 
   if (isLoadingGetCityWeatherAPI) {
     pageContent = "Loading";
+    console.log("Loading");
   } else if (getCityWeatherAPIError) {
     pageContent = "Error loading city weather";
   } else if (isSuccessGetCityWeatherAPI) {
@@ -30,16 +40,15 @@ function Home() {
     }
   }
 
+  // #region UTIL
+  function callGetCityWeatherAPI(newCity) {
+    getCityWeatherAPI({ city: newCity });
+  }
+  // #endregion
+
   return (
     <div>
-      <Button
-        onClick={() => {
-          console.log("1");
-          getCityWeatherAPI();
-        }}
-      >
-        CALL
-      </Button>
+      <SearchBar searchBtnClickFn={callGetCityWeatherAPI} />
       {pageContent}
     </div>
   );

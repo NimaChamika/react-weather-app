@@ -11,7 +11,6 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <StyledEngineProvider injectFirst>
-        {" "}
         <App />
       </StyledEngineProvider>
     </Provider>
