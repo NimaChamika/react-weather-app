@@ -1,0 +1,58 @@
+.parentBox {
+  display: flex;
+  flex-direction: column;
+  background-color: green;
+  width: 100%;
+  height: 40vh;
+  padding-inline: max(10px, 2%);
+}
+
+.statBox1 {
+  background-color: blue;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.statBox2 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: red;
+  width: 100%;
+  height: 15vh;
+}
+
+.statBox3 {
+  display: flex;
+  justify-content: flex-start;
+  background-color: greenyellow;
+  width: 100%;
+  height: 15vh;
+  flex-flow: row nowrap;
+  overflow-x: scroll;
+  align-items: center;
+}
+
+.statBox3 .miniStatBox {
+  min-width: max(24%, 200px);
+  background-color: red;
+  margin: 1px;
+  height: 12vh;
+}
+
+/*LARGE*/
+@media screen and (min-width: 768px) {
+  .statBox3 {
+    flex-flow: row wrap;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .statBox3 .miniStatBox {
+    height: 7vh;
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import SearchBar from "../SearchBar";
 import { useGetCityWeatherMutation } from "../../Services/Weather_Apis";
+import CityData from "../CityData";
 
 function Home() {
   // #region HOOKS
@@ -34,7 +35,18 @@ function Home() {
         "🚀 ~ Home ~ getCityWeatherAPIResponse:",
         getCityWeatherAPIResponse,
       );
-      pageContent = "SUCCESS";
+      pageContent = (
+        <>
+          <SearchBar searchBtnClickFn={callGetCityWeatherAPI} />
+          <CityData
+            locationData={getCityWeatherAPIResponse.location}
+            currentWeatherData={getCityWeatherAPIResponse.current}
+            todayForecastData={
+              getCityWeatherAPIResponse.forecast.forecastday[0]
+            }
+          />
+        </>
+      );
     } else {
       pageContent = "NO DATA";
     }
@@ -46,12 +58,7 @@ function Home() {
   }
   // #endregion
 
-  return (
-    <div>
-      <SearchBar searchBtnClickFn={callGetCityWeatherAPI} />
-      {pageContent}
-    </div>
-  );
+  return <div>{pageContent}</div>;
 }
 
 export default Home;

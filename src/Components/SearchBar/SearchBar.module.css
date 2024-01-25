@@ -1,15 +1,18 @@
 .parentBox {
   display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: red;
+  height: max(10vh, 65px);
 }
 
 .form {
-  margin-block: 10px;
   width: 90%;
+  height: 60%;
 }
 
 .searchInput {
-  height: 7vh;
+  height: 100%;
 }
 
 /*LARGE*/
