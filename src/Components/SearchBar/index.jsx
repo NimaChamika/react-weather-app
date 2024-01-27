@@ -1,7 +1,8 @@
-import { SearchOutlined } from "@mui/icons-material";
-
+import { DarkMode, LightMode, SearchOutlined } from "@mui/icons-material";
+import { useTheme } from "@emotion/react";
 import {
   Box,
+  ButtonGroup,
   FormControl,
   IconButton,
   InputAdornment,
@@ -10,8 +11,10 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import styles from "./SearchBar.module.css";
+import { ThemeMode } from "../../Utils/Data";
 
-function SearchBar({ searchBtnClickFn }) {
+function SearchBar({ searchBtnClickFn, changeThemeFn }) {
+  const theme = useTheme();
   const [searchText, setSearchText] = useState("");
 
   const changeSearchText = (e) => {
@@ -42,6 +45,34 @@ function SearchBar({ searchBtnClickFn }) {
           label="Enter Your City..."
         />
       </FormControl>
+      <ButtonGroup className={styles.themeBox}>
+        <IconButton
+          sx={{
+            color:
+              theme.palette.mode === ThemeMode.LIGHT
+                ? "rgb(41, 204, 151)"
+                : "rgb(100, 100, 100)",
+          }}
+          onClick={() => {
+            changeThemeFn(ThemeMode.LIGHT);
+          }}
+        >
+          <LightMode />
+        </IconButton>
+        <IconButton
+          sx={{
+            color:
+              theme.palette.mode === ThemeMode.DARK
+                ? "rgb(41, 204, 151)"
+                : "rgb(100, 100, 100)",
+          }}
+          onClick={() => {
+            changeThemeFn(ThemeMode.DARK);
+          }}
+        >
+          <DarkMode />
+        </IconButton>
+      </ButtonGroup>
     </Box>
   );
 }

@@ -62,7 +62,7 @@ const getCityStatDataArr = (todayForecastData, currentWeatherData) => {
       imgSrc: "/images/chanceOfRain.png",
       altText: "chanceOfRainImage",
       title: "Chance Of Rain",
-      value: `${todayForecastData.day.daily_chance_of_rain} %;`,
+      value: `${todayForecastData.day.daily_chance_of_rain} %`,
     },
   };
 

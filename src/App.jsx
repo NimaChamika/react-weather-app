@@ -5,12 +5,12 @@ import Home from "./Components/Home";
 
 export const ThemeColors = {
   backgroundColor: {
-    light: "rgba(255, 255, 255, 255)",
-    dark: "rgba(0, 0, 0, 255)",
+    light: "rgb(244, 245, 253)",
+    dark: "rgb(32, 33, 38)",
   },
-  appBarColor: {
-    light: "rgba(255,255,255,255)",
-    dark: "rgba(33,33,33,255)",
+  paperColor: {
+    light: "rgb(243, 236, 255)",
+    dark: "rgb(91, 94, 106)",
   },
   primaryTextColor: {
     light: "rgba(0, 0, 0, 255)",
@@ -23,12 +23,10 @@ export const ThemeColors = {
 };
 
 function App() {
-  const [themeMode, setThemeMode] = useState(ThemeMode.DARK);
+  const [themeMode, setThemeMode] = useState(ThemeMode.LIGHT);
 
   // eslint-disable-next-line no-unused-vars
-  const changeTheme = () => {
-    const newTheme =
-      themeMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT;
+  const changeTheme = (newTheme) => {
     setThemeMode(newTheme);
   };
 
@@ -38,12 +36,9 @@ function App() {
         palette: {
           mode: themeMode,
           primary: {
-            main: "rgba(206, 60, 54,255)",
-            light: "rgba(206, 60, 54,255)",
-            dark: "rgba(206, 60, 54,255)",
-          },
-          secondary: {
-            main: "rgba(206, 60, 54,255)",
+            main: "rgba(0, 0, 0, 255)",
+            light: "rgba(0, 0, 0, 255)",
+            dark: "rgba(255,255,255,255)",
           },
           icon: {
             main:
@@ -58,8 +53,8 @@ function App() {
                 : ThemeColors.backgroundColor.dark,
             paper:
               themeMode === ThemeMode.LIGHT
-                ? ThemeColors.backgroundColor.light
-                : ThemeColors.backgroundColor.dark,
+                ? ThemeColors.paperColor.light
+                : ThemeColors.paperColor.dark,
           },
           text: {
             primary:
@@ -73,6 +68,9 @@ function App() {
             neutral: "rgba(255, 0, 0,255)",
           },
         },
+        typography: {
+          fontFamily: "Roboto Slab",
+        },
       }),
     [themeMode],
   );
@@ -80,7 +78,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline>
-        <Home />
+        <Home changeThemeFn={changeTheme} />
       </CssBaseline>
     </ThemeProvider>
   );

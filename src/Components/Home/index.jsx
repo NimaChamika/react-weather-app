@@ -3,7 +3,7 @@ import SearchBar from "../SearchBar";
 import { useGetCityWeatherMutation } from "../../Services/Weather_Apis";
 import CityData from "../CityData";
 
-function Home() {
+function Home({ changeThemeFn }) {
   // #region HOOKS
 
   useEffect(() => {
@@ -37,7 +37,10 @@ function Home() {
       );
       pageContent = (
         <>
-          <SearchBar searchBtnClickFn={callGetCityWeatherAPI} />
+          <SearchBar
+            searchBtnClickFn={callGetCityWeatherAPI}
+            changeThemeFn={changeThemeFn}
+          />
           <CityData
             locationData={getCityWeatherAPIResponse.location}
             currentWeatherData={getCityWeatherAPIResponse.current}
