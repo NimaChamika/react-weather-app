@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
   height: max(10vh, 65px);
 }
 

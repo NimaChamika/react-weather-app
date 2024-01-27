@@ -23,7 +23,7 @@ export const ThemeColors = {
 };
 
 function App() {
-  const [themeMode, setThemeMode] = useState(ThemeMode.LIGHT);
+  const [themeMode, setThemeMode] = useState(ThemeMode.DARK);
 
   // eslint-disable-next-line no-unused-vars
   const changeTheme = () => {

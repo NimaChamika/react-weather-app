@@ -63,7 +63,7 @@ test("CityMainStatBox should render properly", () => {
   expect(conditionImageEl.src).toBe(currentWeatherData.condition.icon);
 
   const temperatureTextEl = screen.getByText(
-    `${currentWeatherData.temp_c} &#8451;`,
+    `${currentWeatherData.temp_c} \u2103`,
   );
   expect(temperatureTextEl).toBeInTheDocument();
 
