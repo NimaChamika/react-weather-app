@@ -1,22 +1,13 @@
 import { Box } from "@mui/material";
 import styles from "./CityData.module.css";
-import { getCityDateNTime } from "./utilFns";
+import { CityLocationNDateTimeBox, CityMainStatBox } from "./UtilComponents";
 
 function CityData({ locationData, currentWeatherData, todayForecastData }) {
   return (
     <Box className={styles.parentBox}>
-      <Box className={styles.statBox1}>
-        <h4>{getCityDateNTime(locationData.localtime)}</h4>
-        <h2>
-          {locationData.name} {locationData.country}
-        </h2>
-      </Box>
+      <CityLocationNDateTimeBox locationData={locationData} />
+      <CityMainStatBox currentWeatherData={currentWeatherData} />
 
-      <Box className={styles.statBox2}>
-        <img src={currentWeatherData.condition.icon} alt="icon" />
-        <h2>{currentWeatherData.temp_c} &#8451;</h2>
-        <h2>{currentWeatherData.condition.text}</h2>
-      </Box>
       <Box className={styles.statBox3}>
         <Box className={styles.miniStatBox}>
           <Box sx={{ display: "flex", height: "50%" }}>
