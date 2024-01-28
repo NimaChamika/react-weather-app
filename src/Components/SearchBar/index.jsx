@@ -33,6 +33,7 @@ function SearchBar({ searchBtnClickFn, changeThemeFn }) {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
+                aria-label="searchBtn"
                 onClick={() => {
                   searchBtnClickFn(searchText);
                 }}
@@ -47,11 +48,9 @@ function SearchBar({ searchBtnClickFn, changeThemeFn }) {
       </FormControl>
       <ButtonGroup className={styles.themeBox}>
         <IconButton
+          aria-label="lightThemeBtn"
           sx={{
-            color:
-              theme.palette.mode === ThemeMode.LIGHT
-                ? "rgb(41, 204, 151)"
-                : "rgb(100, 100, 100)",
+            color: theme.palette.background.lightThemeBtn,
           }}
           onClick={() => {
             changeThemeFn(ThemeMode.LIGHT);
@@ -60,11 +59,9 @@ function SearchBar({ searchBtnClickFn, changeThemeFn }) {
           <LightMode />
         </IconButton>
         <IconButton
+          aria-label="darkThemeBtn"
           sx={{
-            color:
-              theme.palette.mode === ThemeMode.DARK
-                ? "rgb(41, 204, 151)"
-                : "rgb(100, 100, 100)",
+            color: theme.palette.background.darkThemeBtn,
           }}
           onClick={() => {
             changeThemeFn(ThemeMode.DARK);

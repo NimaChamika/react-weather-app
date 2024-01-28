@@ -15,7 +15,7 @@ const getCityDateNTime = (value) => {
 };
 
 const getCityStatDataArr = (todayForecastData, currentWeatherData) => {
-  const stateDataArr = {
+  const statsDataArr = {
     sunRiseData: {
       imgSrc: "/images/sunrise.png",
       altText: "sunRiseImage",
@@ -66,7 +66,9 @@ const getCityStatDataArr = (todayForecastData, currentWeatherData) => {
     },
   };
 
-  return stateDataArr;
+  console.log(statsDataArr);
+
+  return statsDataArr;
 };
 
 export { getCityDateNTime, getCityStatDataArr };

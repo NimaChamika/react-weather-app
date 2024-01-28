@@ -31,10 +31,6 @@ function Home({ changeThemeFn }) {
     pageContent = "Error loading city weather";
   } else if (isSuccessGetCityWeatherAPI) {
     if (getCityWeatherAPIResponse) {
-      console.log(
-        "🚀 ~ Home ~ getCityWeatherAPIResponse:",
-        getCityWeatherAPIResponse,
-      );
       pageContent = (
         <>
           <SearchBar
