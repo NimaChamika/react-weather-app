@@ -1,7 +1,7 @@
+import CityData from "Components/CityData";
+import SearchBar from "Components/SearchBar";
+import { useGetCityWeatherMutation } from "Services/Weather_Apis";
 import { useEffect } from "react";
-import SearchBar from "../SearchBar";
-import { useGetCityWeatherMutation } from "../../Services/Weather_Apis";
-import CityData from "../CityData";
 
 function Home({ changeThemeFn }) {
   // #region HOOKS

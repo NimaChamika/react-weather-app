@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import weatherApi from "../Services/Weather_Apis";
+import weatherApi from "Services/Weather_Apis";
 
 const homeSlice = createSlice({
   name: "home",

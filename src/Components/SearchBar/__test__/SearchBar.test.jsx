@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import { ThemeMode } from "../../../Utils/Data";
-import { getThemeData } from "../../../App";
+import { getThemeData } from "App";
+import { ThemeMode } from "Utils/Data";
 import SearchBar from "..";
 
 let mockClickFn;

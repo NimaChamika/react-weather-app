@@ -66,8 +66,6 @@ const getCityStatDataArr = (todayForecastData, currentWeatherData) => {
     },
   };
 
-  console.log(statsDataArr);
-
   return statsDataArr;
 };
 

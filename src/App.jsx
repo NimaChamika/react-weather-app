@@ -1,7 +1,7 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import Home from "Components/Home";
+import { ThemeMode } from "Utils/Data";
 import { useMemo, useState } from "react";
-import { ThemeMode } from "./Utils/Data";
-import Home from "./Components/Home";
 
 function App() {
   const [themeMode, setThemeMode] = useState(ThemeMode.LIGHT);

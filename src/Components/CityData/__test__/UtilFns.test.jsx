@@ -1,12 +1,12 @@
-import { getCityDateNTime, getCityStatDataArr } from "../UtilFns";
+const { getCityDateNTime, getCityStatDataArr } = require("../UtilFns");
 
-test("getCityDateNTime fn should word properly", () => {
+test("getCityDateNTime fn should work properly", () => {
   const value = "2024-01-27 18:45";
   const result = getCityDateNTime(value);
   expect(result).toEqual("27, Jan at 2024, 06:45 PM");
 });
 
-test("getCityStatDataArr fn should word properly", () => {
+test("getCityStatDataArr fn should work properly", () => {
   const todayForecastData = {
     astro: {
       is_moon_up: 1,

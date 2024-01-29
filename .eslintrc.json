@@ -10,6 +10,13 @@
     "airbnb",
     "plugin:prettier/recommended"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
   "parserOptions": {
     "ecmaFeatures": { "jsx": true },
     "ecmaVersion": "latest",

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "index.css";
 import { Provider } from "react-redux";
 import { StyledEngineProvider } from "@mui/material";
-import App from "./App";
-import store from "./Store/Store";
+import store from "Store/Store";
+import App from "App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
