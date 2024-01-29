@@ -1,5 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import weatherApi from "Services/Weather_Apis";
+import cityApi from "Services/City_API";
+import weatherApi from "Services/Weather_Api";
 
 const homeSlice = createSlice({
   name: "home",
@@ -17,9 +18,12 @@ const store = configureStore({
   reducer: {
     home: homeSlice.reducer,
     [weatherApi.reducerPath]: weatherApi.reducer,
+    [cityApi.reducerPath]: cityApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(weatherApi.middleware),
+    getDefaultMiddleware()
+      .concat(weatherApi.middleware)
+      .concat(cityApi.middleware),
 });
 
 export const homeActions = homeSlice.actions;

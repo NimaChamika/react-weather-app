@@ -2,6 +2,8 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { getThemeData } from "App";
 import { ThemeMode } from "Utils/Data";
+import { Provider } from "react-redux";
+import store from "Store/Store";
 import SearchBar from "..";
 
 let mockClickFn;
@@ -18,24 +20,27 @@ beforeEach(() => {
 
   // eslint-disable-next-line testing-library/no-render-in-setup
   render(
-    <ThemeProvider theme={mockTheme}>
-      <CssBaseline>
-        <SearchBar
-          searchBtnClickFn={mockClickFn}
-          changeThemeFn={mockThemeBtnClickFn}
-        />
-      </CssBaseline>
-    </ThemeProvider>,
+    <Provider store={store}>
+      <ThemeProvider theme={mockTheme}>
+        <CssBaseline>
+          <SearchBar
+            searchBtnClickFn={mockClickFn}
+            changeThemeFn={mockThemeBtnClickFn}
+          />
+        </CssBaseline>
+      </ThemeProvider>
+      ,
+    </Provider>,
   );
 });
 
 test("input init value should be empty", () => {
-  const inputEl = screen.getByRole("textbox");
+  const inputEl = screen.getByRole("combobox");
   expect(inputEl.value).toBe("");
 });
 
 test("input value change correctly", () => {
-  const inputEl = screen.getByRole("textbox");
+  const inputEl = screen.getByRole("combobox");
   fireEvent.change(inputEl, { target: { value: "colombo" } });
 
   expect(inputEl.value).toBe("colombo");

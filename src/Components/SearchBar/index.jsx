@@ -1,51 +1,72 @@
 import { DarkMode, LightMode, SearchOutlined } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
 import {
+  Autocomplete,
   Box,
   ButtonGroup,
-  FormControl,
   IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
+  TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import styles from "./SearchBar.module.css";
 import { ThemeMode } from "../../Utils/Data";
+import WithGetCities from "./WithGetCities";
 
-function SearchBar({ searchBtnClickFn, changeThemeFn }) {
+function SearchBar({
+  searchBtnClickFn,
+  changeThemeFn,
+  cityList,
+  callGetCitiesAPI,
+}) {
   const theme = useTheme();
-  const [searchText, setSearchText] = useState("");
 
-  const changeSearchText = (e) => {
-    setSearchText(e.target.value);
-  };
+  const [data, setData] = useState([]);
+  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    if (cityList.length > 0) {
+      setData(cityList);
+    }
+  }, [cityList]);
 
   return (
     <Box className={styles.parentBox}>
-      <FormControl className={styles.form} variant="outlined">
-        <InputLabel>Enter Your City...</InputLabel>
-        <OutlinedInput
-          className={styles.searchInput}
-          type="text"
-          value={searchText}
-          onChange={changeSearchText}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="searchBtn"
-                onClick={() => {
-                  searchBtnClickFn(searchText);
-                }}
-                edge="end"
-              >
-                <SearchOutlined />
-              </IconButton>
-            </InputAdornment>
-          }
-          label="Enter Your City..."
-        />
-      </FormControl>
+      <Autocomplete
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        selectOnFocus
+        clearOnBlur
+        handleHomeEndKeys
+        id="free-solo-with-text-demo"
+        options={data}
+        getOptionLabel={(option) => {
+          return option;
+        }}
+        renderOption={(props, option) => <li {...props}>{option}</li>}
+        sx={{ width: 300 }}
+        freeSolo
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Enter Your City..."
+            onChange={(e) => {
+              callGetCitiesAPI(e.target.value);
+            }}
+          />
+        )}
+      />
+      <IconButton
+        aria-label="searchBtn"
+        onClick={() => {
+          searchBtnClickFn(value);
+        }}
+        edge="end"
+      >
+        <SearchOutlined />
+      </IconButton>
       <ButtonGroup className={styles.themeBox}>
         <IconButton
           aria-label="lightThemeBtn"
@@ -74,4 +95,4 @@ function SearchBar({ searchBtnClickFn, changeThemeFn }) {
   );
 }
 
-export default SearchBar;
+export default WithGetCities(SearchBar);

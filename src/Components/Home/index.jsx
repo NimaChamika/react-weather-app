@@ -1,6 +1,6 @@
 import CityData from "Components/CityData";
 import SearchBar from "Components/SearchBar";
-import { useGetCityWeatherMutation } from "Services/Weather_Apis";
+import { useGetCityWeatherMutation } from "Services/Weather_Api";
 import { useEffect } from "react";
 
 function Home({ changeThemeFn }) {

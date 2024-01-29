@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const weatherApi = createApi({
   reducerPath: "weatherApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_BASE_URL,
+    baseUrl: process.env.REACT_APP_WEATHER_API_BASE_URL,
   }),
   endpoints: (builder) => ({
     getCityWeather: builder.mutation({
