@@ -8,7 +8,7 @@ const cityApi = createApi({
   endpoints: (builder) => ({
     getCities: builder.mutation({
       query: ({ cityPrefix }) => ({
-        url: `/cities?minPopulation=500000&namePrefix=${cityPrefix}`,
+        url: `/cities?minPopulation=100000&namePrefix=${cityPrefix}`,
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
