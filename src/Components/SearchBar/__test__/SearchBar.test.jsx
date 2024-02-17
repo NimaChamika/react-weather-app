@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import WeatherDataContextProvider from "Contexts/WeatherDataContext";
 import { getThemeData } from "App";
 import { ThemeMode } from "Utils/Data";
 import { Provider } from "react-redux";
@@ -18,15 +19,23 @@ beforeEach(() => {
   mockClickFn = jest.fn();
   mockThemeBtnClickFn = jest.fn();
 
+  const value = {
+    weatherData: {},
+    searchBtnClickFn: mockClickFn,
+    changeThemeFn: mockThemeBtnClickFn,
+  };
+
   // eslint-disable-next-line testing-library/no-render-in-setup
   render(
     <Provider store={store}>
       <ThemeProvider theme={mockTheme}>
         <CssBaseline>
-          <SearchBar
-            searchBtnClickFn={mockClickFn}
-            changeThemeFn={mockThemeBtnClickFn}
-          />
+          <WeatherDataContextProvider value={value}>
+            <SearchBar
+              searchBtnClickFn={mockClickFn}
+              changeThemeFn={mockThemeBtnClickFn}
+            />
+          </WeatherDataContextProvider>
         </CssBaseline>
       </ThemeProvider>
       ,

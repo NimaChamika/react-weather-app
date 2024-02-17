@@ -6,16 +6,12 @@ import {
   CityMiniStatBox,
 } from "./UtilComponents";
 
-function CityData({ locationData, currentWeatherData, todayForecastData }) {
+function CityData() {
   return (
     <Box className={styles.parentBox}>
-      <CityLocationNDateTimeBox locationData={locationData} />
-      <CityMainStatBox currentWeatherData={currentWeatherData} />
-
-      <CityMiniStatBox
-        todayForecastData={todayForecastData}
-        currentWeatherData={currentWeatherData}
-      />
+      <CityLocationNDateTimeBox />
+      <CityMainStatBox />
+      <CityMiniStatBox />
     </Box>
   );
 }

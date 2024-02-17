@@ -8,18 +8,15 @@ import {
   TextField,
 } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-
+import { useWeatherDataContext } from "Contexts/WeatherDataContext";
 import styles from "./SearchBar.module.css";
 import { ThemeMode } from "../../Utils/Data";
 import WithGetCities from "./WithGetCities";
 
-function SearchBar({
-  searchBtnClickFn,
-  changeThemeFn,
-  cityList,
-  callGetCitiesAPI,
-}) {
+function SearchBar({ data: { cityList, callGetCitiesAPIFn } }) {
   // #region HOOKS
+  const { searchBtnClickFn, changeThemeFn } = useWeatherDataContext();
+
   const theme = useTheme();
 
   const [cityLst, setCityLst] = useState([]);
@@ -48,7 +45,7 @@ function SearchBar({
       if (waitingArgs === null) {
         shouldWait = false;
       } else {
-        callGetCitiesAPI(waitingArgs);
+        callGetCitiesAPIFn(waitingArgs);
         waitingArgs = null;
         setTimeout(timeOutFn, delay);
       }
@@ -60,7 +57,7 @@ function SearchBar({
         return;
       }
 
-      callGetCitiesAPI(value);
+      callGetCitiesAPIFn(value);
       shouldWait = true;
 
       setTimeout(timeOutFn, delay);

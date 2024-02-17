@@ -1,43 +1,58 @@
 import { Box, useTheme } from "@mui/material";
+import { useWeatherDataContext } from "Contexts/WeatherDataContext";
 import styles from "./CityData.module.css";
 import { getCityDateNTime, getCityStatDataArr } from "./UtilFns";
 
-function CityLocationNDateTimeBox({ locationData }) {
+function CityLocationNDateTimeBox() {
+  const { location } = useWeatherDataContext().weatherData;
+
   return (
     <Box
       aria-label="city location N data time"
       className={styles.cityLocationNDateTimeBox}
     >
-      <h4>{getCityDateNTime(locationData.localtime)}</h4>
+      <h4>{getCityDateNTime(location.localtime)}</h4>
       <h3
         className={styles.cityName}
-      >{`${locationData.name}, ${locationData.country}`}</h3>
+      >{`${location.name}, ${location.country}`}</h3>
     </Box>
   );
 }
 
-function CityMainStatBox({ currentWeatherData }) {
+function CityMainStatBox() {
+  const { current: currentData } = useWeatherDataContext().weatherData;
+
   return (
     <Box aria-label="city main stats" className={styles.cityMainStatBox}>
       <img
-        src={currentWeatherData.condition.icon}
+        src={currentData.condition.icon}
         alt="conditionImage"
         style={{ height: "100%", width: "auto" }}
       />
-      <h3>{`${currentWeatherData.temp_c} \u2103`}</h3>
-      <h3 className={styles.conditionText}>
-        {currentWeatherData.condition.text}
-      </h3>
+      <h3>{`${currentData.temp_c} \u2103`}</h3>
+      <h3 className={styles.conditionText}>{currentData.condition.text}</h3>
     </Box>
   );
 }
 
-function CityMiniStatBox({ todayForecastData, currentWeatherData }) {
+function CityMiniStatBox() {
+  // #region HOOKS
+  const {
+    current: currentData,
+    forecast: { forecastday },
+  } = useWeatherDataContext().weatherData;
+
   const theme = useTheme();
 
+  // #endregion
+
+  // #region INIT DATA
+  const todayForecastData = forecastday[0];
+
   const statArr = Object.entries(
-    getCityStatDataArr(todayForecastData, currentWeatherData),
+    getCityStatDataArr(todayForecastData, currentData),
   ).map((item) => item[1]);
+  // #endregion
 
   return (
     <Box aria-label="city mini stats" className={styles.cityMiniStatBox}>

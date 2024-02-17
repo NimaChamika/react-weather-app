@@ -1,10 +1,10 @@
 import { useGetCitiesMutation } from "Services/City_API";
 
 function WithGetCities(OldComponent) {
-  function NewComponent({ searchBtnClickFn, changeThemeFn }) {
+  function NewComponent() {
     const [getCitiesAPI, { data }] = useGetCitiesMutation();
 
-    function callGetCitiesAPI(cityPrefix) {
+    function callGetCitiesAPIFn(cityPrefix) {
       getCitiesAPI({ cityPrefix });
     }
 
@@ -14,14 +14,12 @@ function WithGetCities(OldComponent) {
       cityList = [...new Set(data.map((item) => item.city))];
     }
 
-    return (
-      <OldComponent
-        searchBtnClickFn={searchBtnClickFn}
-        changeThemeFn={changeThemeFn}
-        cityList={cityList}
-        callGetCitiesAPI={callGetCitiesAPI}
-      />
-    );
+    const propsObj = {
+      cityList,
+      callGetCitiesAPIFn,
+    };
+
+    return <OldComponent data={propsObj} />;
   }
   return NewComponent;
 }
