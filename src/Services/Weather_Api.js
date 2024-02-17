@@ -6,7 +6,7 @@ const weatherApi = createApi({
     baseUrl: process.env.REACT_APP_WEATHER_API_BASE_URL,
   }),
   endpoints: (builder) => ({
-    getCityWeather: builder.mutation({
+    getCityWeather: builder.query({
       query: ({ city }) => ({
         url: `/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${city}&days=7&aqi=no&alerts=no`,
         method: "GET",
@@ -16,5 +16,5 @@ const weatherApi = createApi({
   }),
 });
 
-export const { useGetCityWeatherMutation } = weatherApi;
+export const { useGetCityWeatherQuery } = weatherApi;
 export default weatherApi;

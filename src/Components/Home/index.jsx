@@ -1,32 +1,23 @@
+import { useState } from "react";
 import CityData from "Components/CityData";
 import SearchBar from "Components/SearchBar";
-import { useGetCityWeatherMutation } from "Services/Weather_Api";
-import { useEffect } from "react";
+import { useGetCityWeatherQuery } from "Services/Weather_Api";
+import CustomBackdrop from "Utils/CustomBackdrop";
 
 function Home({ changeThemeFn }) {
-  // #region HOOKS
+  const [cityName, setCityName] = useState("colombo");
 
-  useEffect(() => {
-    getCityWeatherAPI({ city: "colombo" });
-  }, []);
-
-  // #endregion
-
-  const [
-    getCityWeatherAPI,
-    {
-      isLoading: isLoadingGetCityWeatherAPI,
-      isSuccess: isSuccessGetCityWeatherAPI,
-      data: getCityWeatherAPIResponse,
-      error: getCityWeatherAPIError,
-    },
-  ] = useGetCityWeatherMutation();
+  const {
+    isFetching: isFetchingGetCityWeatherAPI,
+    isSuccess: isSuccessGetCityWeatherAPI,
+    data: getCityWeatherAPIResponse,
+    error: getCityWeatherAPIError,
+  } = useGetCityWeatherQuery({ city: cityName });
 
   let pageContent;
 
-  if (isLoadingGetCityWeatherAPI) {
-    pageContent = "Loading";
-    console.log("Loading");
+  if (isFetchingGetCityWeatherAPI) {
+    pageContent = <CustomBackdrop />;
   } else if (getCityWeatherAPIError) {
     pageContent = "Error loading city weather";
   } else if (isSuccessGetCityWeatherAPI) {
@@ -53,7 +44,7 @@ function Home({ changeThemeFn }) {
 
   // #region UTIL
   function callGetCityWeatherAPI(newCity) {
-    getCityWeatherAPI({ city: newCity });
+    setCityName(newCity);
   }
   // #endregion
 
