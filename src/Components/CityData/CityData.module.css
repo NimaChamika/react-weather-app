@@ -15,6 +15,11 @@
   align-items: center;
 }
 
+.cityName {
+  max-lines: 1;
+  text-overflow: ellipsis;
+}
+
 .cityMainStatBox {
   display: flex;
   justify-content: space-evenly;
@@ -23,7 +28,12 @@
   height: 10vh;
 }
 
-.cityAdditionalStatBox {
+.conditionText {
+  max-lines: 1;
+  text-overflow: ellipsis;
+}
+
+.cityMiniStatBox {
   display: flex;
   justify-content: flex-start;
   height: 20vh;
@@ -32,7 +42,7 @@
   align-items: center;
 }
 
-.cityAdditionalStatBox .miniStatBox {
+.cityMiniStatBox .miniStatBox {
   min-width: max(22%, 170px);
   height: 12vh;
   margin: 0.5vh;
@@ -45,13 +55,13 @@
 
 /*LARGE*/
 @media screen and (min-width: 768px) {
-  .cityAdditionalStatBox {
+  .cityMiniStatBox {
     flex-flow: row wrap;
     justify-content: space-evenly;
     overflow: hidden;
   }
 
-  .cityAdditionalStatBox .miniStatBox {
+  .cityMiniStatBox .miniStatBox {
     height: 9vh;
   }
 }

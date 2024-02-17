@@ -40,7 +40,7 @@ function SearchBar({
   // #endregion
 
   // #region UTIL FNS
-  function searchInputThrottle(delay = 1200) {
+  function searchInputThrottle(delay = 1500) {
     let shouldWait = false;
     let waitingArgs;
 
@@ -95,6 +95,12 @@ function SearchBar({
               onChange={(e) => {
                 setSelectedCity(e.target.value);
                 searchInputThrottleFnRef.current(e.target.value);
+              }}
+              inputProps={{
+                ...params.inputProps,
+                style: {
+                  padding: 0,
+                },
               }}
             />
           )}

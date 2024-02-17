@@ -1,9 +1,9 @@
 import { Box } from "@mui/material";
 import styles from "./CityData.module.css";
 import {
-  CityAdditionalStatBox,
   CityLocationNDateTimeBox,
   CityMainStatBox,
+  CityMiniStatBox,
 } from "./UtilComponents";
 
 function CityData({ locationData, currentWeatherData, todayForecastData }) {
@@ -12,7 +12,7 @@ function CityData({ locationData, currentWeatherData, todayForecastData }) {
       <CityLocationNDateTimeBox locationData={locationData} />
       <CityMainStatBox currentWeatherData={currentWeatherData} />
 
-      <CityAdditionalStatBox
+      <CityMiniStatBox
         todayForecastData={todayForecastData}
         currentWeatherData={currentWeatherData}
       />

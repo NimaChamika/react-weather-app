@@ -4,28 +4,35 @@ import { getCityDateNTime, getCityStatDataArr } from "./UtilFns";
 
 function CityLocationNDateTimeBox({ locationData }) {
   return (
-    <Box className={styles.cityLocationNDateTimeBox}>
+    <Box
+      aria-label="city location N data time"
+      className={styles.cityLocationNDateTimeBox}
+    >
       <h4>{getCityDateNTime(locationData.localtime)}</h4>
-      <h2>{`${locationData.name} ${locationData.country}`}</h2>
+      <h3
+        className={styles.cityName}
+      >{`${locationData.name}, ${locationData.country}`}</h3>
     </Box>
   );
 }
 
 function CityMainStatBox({ currentWeatherData }) {
   return (
-    <Box className={styles.cityMainStatBox}>
+    <Box aria-label="city main stats" className={styles.cityMainStatBox}>
       <img
         src={currentWeatherData.condition.icon}
         alt="conditionImage"
         style={{ height: "100%", width: "auto" }}
       />
-      <h2>{`${currentWeatherData.temp_c} \u2103`}</h2>
-      <h2>{currentWeatherData.condition.text}</h2>
+      <h3>{`${currentWeatherData.temp_c} \u2103`}</h3>
+      <h3 className={styles.conditionText}>
+        {currentWeatherData.condition.text}
+      </h3>
     </Box>
   );
 }
 
-function CityAdditionalStatBox({ todayForecastData, currentWeatherData }) {
+function CityMiniStatBox({ todayForecastData, currentWeatherData }) {
   const theme = useTheme();
 
   const statArr = Object.entries(
@@ -33,10 +40,11 @@ function CityAdditionalStatBox({ todayForecastData, currentWeatherData }) {
   ).map((item) => item[1]);
 
   return (
-    <Box className={styles.cityAdditionalStatBox}>
+    <Box aria-label="city mini stats" className={styles.cityMiniStatBox}>
       {statArr.map((item) => {
         return (
           <Box
+            aria-label="mini stat box"
             className={styles.miniStatBox}
             key={item.title}
             sx={{ backgroundColor: theme.palette.background.paper }}
@@ -67,4 +75,4 @@ function CityAdditionalStatBox({ todayForecastData, currentWeatherData }) {
   );
 }
 
-export { CityLocationNDateTimeBox, CityMainStatBox, CityAdditionalStatBox };
+export { CityLocationNDateTimeBox, CityMainStatBox, CityMiniStatBox };
