@@ -6,7 +6,6 @@ import { useMemo, useState } from "react";
 function App() {
   const [themeMode, setThemeMode] = useState(ThemeMode.LIGHT);
 
-  // eslint-disable-next-line no-unused-vars
   const changeTheme = (newTheme) => {
     setThemeMode(newTheme);
   };

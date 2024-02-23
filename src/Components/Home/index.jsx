@@ -4,6 +4,7 @@ import SearchBar from "Components/SearchBar";
 import { useGetCityWeatherQuery } from "Services/Weather_Api";
 import CustomBackdrop from "Utils/CustomBackdrop";
 import WeatherDataContextProvider from "Contexts/WeatherDataContext";
+import HourlyForecast from "Components/HourlyForecast";
 
 function Home({ changeThemeFn }) {
   // #region HOOKS
@@ -42,6 +43,7 @@ function Home({ changeThemeFn }) {
         <WeatherDataContextProvider value={value}>
           <SearchBar />
           <CityData />
+          <HourlyForecast />
         </WeatherDataContextProvider>
       );
     } else {

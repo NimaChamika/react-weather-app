@@ -1,0 +1,28 @@
+.parentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: max(25vh, 160px);
+  padding-inline: max(10px, 2%);
+}
+
+.hourlyStatLstParentBox {
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 70%;
+}
+
+.hourlyStatBox {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100px;
+  height: 100%;
+  margin-right: 10px;
+  border-radius: 10px;
+}
