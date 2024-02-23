@@ -5,6 +5,7 @@ import { useGetCityWeatherQuery } from "Services/Weather_Api";
 import CustomBackdrop from "Utils/CustomBackdrop";
 import WeatherDataContextProvider from "Contexts/WeatherDataContext";
 import HourlyForecast from "Components/HourlyForecast";
+import DailyForecast from "Components/DailyForecast";
 
 function Home({ changeThemeFn }) {
   // #region HOOKS
@@ -44,6 +45,7 @@ function Home({ changeThemeFn }) {
           <SearchBar />
           <CityData />
           <HourlyForecast />
+          <DailyForecast />
         </WeatherDataContextProvider>
       );
     } else {

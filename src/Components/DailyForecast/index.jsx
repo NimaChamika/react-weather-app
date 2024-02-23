@@ -2,17 +2,29 @@ import { Box, useTheme } from "@mui/material";
 import { useWeatherDataContext } from "Contexts/WeatherDataContext";
 import styles from "./index.module.css";
 
-function HourlyForecast() {
+function DailyForecast() {
   // DESTRUCTURE FORECAST OBJ TO GET TODAY STATS
   const {
-    forecast: {
-      forecastday: [{ hour: hourlyDataArr }],
-    },
+    forecast: { forecastday },
   } = useWeatherDataContext().weatherData;
+
+  const hourlyForecastDataArr = [...forecastday];
+
+  while (hourlyForecastDataArr.length < 7) {
+    const nextDayStat = structuredClone(
+      hourlyForecastDataArr[hourlyForecastDataArr.length - 1],
+    );
+
+    const date = new Date(nextDayStat.date);
+    nextDayStat.date = new Date(date.setDate(date.getDate() + 1));
+
+    console.log(nextDayStat);
+    hourlyForecastDataArr.push(nextDayStat);
+  }
 
   const hourlyStatContent = (
     <>
-      {hourlyDataArr.map((item, index) => {
+      {hourlyForecastDataArr.map((item, index) => {
         return <StatBox currentData={item} key={index} />;
       })}
     </>
@@ -20,27 +32,19 @@ function HourlyForecast() {
 
   return (
     <Box className={styles.parentBox}>
-      <h4>Hourly Forecast</h4>
+      <h4>Daily Forecast</h4>
       <Box className={styles.hourlyStatLstParentBox}>{hourlyStatContent}</Box>
     </Box>
   );
 }
 
-export default HourlyForecast;
+export default DailyForecast;
 
 function StatBox({ currentData }) {
   const theme = useTheme();
 
-  const getTime = (value) => {
-    const dateData = new Date(value)
-      .toLocaleString("default", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hourCycle: "h12",
-      })
-      .split(" ");
-
-    return `${dateData[0]} ${dateData[1]}`;
+  const getDay = (value) => {
+    return new Date(value).toLocaleString("en", { weekday: "short" });
   };
 
   return (
@@ -49,13 +53,13 @@ function StatBox({ currentData }) {
       className={styles.hourlyStatBox}
       sx={{ backgroundColor: theme.palette.background.paper }}
     >
-      <h5>{getTime(currentData.time)}</h5>
+      <h5>{getDay(currentData.date)}</h5>
       <img
-        src={currentData.condition.icon}
+        src={currentData.day.condition.icon}
         alt="conditionImage"
         style={{ height: "45%", width: "auto" }}
       />
-      <h5>{`${currentData.temp_c} \u2103`}</h5>
+      <h5>{`${currentData.day.avgtemp_c} \u2103`}</h5>
     </Box>
   );
 }
