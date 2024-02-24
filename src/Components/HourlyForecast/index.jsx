@@ -1,22 +1,32 @@
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import { useWeatherDataContext } from "Contexts/WeatherDataContext";
 import styles from "./index.module.css";
+import { HourlyForecastStatBox } from "./UtilComponents";
 
 function HourlyForecast() {
+  // #region HOOKS
   // DESTRUCTURE FORECAST OBJ TO GET TODAY STATS
   const {
     forecast: {
-      forecastday: [{ hour: hourlyDataArr }],
+      forecastday: [{ hour }],
     },
   } = useWeatherDataContext().weatherData;
 
-  const hourlyStatContent = (
-    <>
-      {hourlyDataArr.map((item, index) => {
-        return <StatBox currentData={item} key={index} />;
-      })}
-    </>
-  );
+  // #endregion
+
+  // #region HOURLY STAT CONTENT
+  // GET NECESSARY PROPERTIES ONLY
+  const hourlyDataArr = hour.map((item) => ({
+    time: item.time,
+    icon: item.condition.icon,
+    temp: item.temp_c,
+  }));
+
+  const hourlyStatContent = hourlyDataArr.map((item, index) => {
+    return <HourlyForecastStatBox currentData={item} key={index} />;
+  });
+
+  // #endregion
 
   return (
     <Box className={styles.parentBox}>
@@ -27,35 +37,3 @@ function HourlyForecast() {
 }
 
 export default HourlyForecast;
-
-function StatBox({ currentData }) {
-  const theme = useTheme();
-
-  const getTime = (value) => {
-    const dateData = new Date(value)
-      .toLocaleString("default", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hourCycle: "h12",
-      })
-      .split(" ");
-
-    return `${dateData[0]} ${dateData[1]}`;
-  };
-
-  return (
-    <Box
-      aria-label="hourly-stat-box"
-      className={styles.hourlyStatBox}
-      sx={{ backgroundColor: theme.palette.background.paper }}
-    >
-      <h5>{getTime(currentData.time)}</h5>
-      <img
-        src={currentData.condition.icon}
-        alt="conditionImage"
-        style={{ height: "45%", width: "auto" }}
-      />
-      <h5>{`${currentData.temp_c} \u2103`}</h5>
-    </Box>
-  );
-}

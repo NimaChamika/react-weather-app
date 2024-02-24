@@ -97,6 +97,18 @@ function getThemeData(themeMode) {
     typography: {
       fontFamily: "Roboto Slab",
     },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            scrollbarColor:
+              themeMode === ThemeMode.LIGHT
+                ? "#c1c1c1 rgb(244, 245, 253)"
+                : "#fff #2b2b2b",
+          },
+        },
+      },
+    },
   };
 }
 
